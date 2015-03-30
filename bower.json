@@ -1,0 +1,14 @@
+{
+  "name": "arcticModal",
+  "version": "0.4",
+  "main": [
+    "./arcticmodal/jquery.arcticmodal.js"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.8.3"
+  },
+  "ignore": [
+    "*.html",
+    "*.css"
+  ]
+}
