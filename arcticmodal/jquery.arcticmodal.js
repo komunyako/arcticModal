@@ -197,7 +197,7 @@
                 success: function(response) {
 
                     // Событие после загрузки до показа содержимого
-                    $this.trigger('afterLoading');
+                    $this.triggerHandler('afterLoading');
                     D.afterLoading(D, $this, response);
 
                     if (fn_success==undefined) {
@@ -208,14 +208,14 @@
                     modal.prepare_body(D, $this);
 
                     // Событие после загрузки после отображения содержимого
-                    $this.trigger('afterLoadingOnShow');
+                    $this.triggerHandler('afterLoadingOnShow');
                     D.afterLoadingOnShow(D, $this, response);
 
                 },
                 error: function() {
 
                     // Событие при ошибке загрузки
-                    $this.trigger('errorLoading');
+                    $this.triggerHandler('errorLoading');
                     D.errorLoading(D, $this);
 
                     if (fn_error==undefined) {
@@ -304,7 +304,7 @@
 
             // Событие
             D.beforeOpen(D, $this);
-            $this.trigger('beforeOpen');
+            $this.triggerHandler('beforeOpen');
 
             // Wrap
             if (D.wrap.css('overflow-y')!='hidden') {
@@ -330,7 +330,7 @@
             modal.transition(D.overlay.block, 'show', modals.length>1 ? {type: 'none'} : D.openEffect);
             modal.transition(D.container.block, 'show', modals.length>1 ? {type: 'none'} : D.openEffect, function() {
                 D.afterOpen(D, $this);
-                $this.trigger('afterOpen');
+                $this.triggerHandler('afterOpen');
             });
 
             return $this;
@@ -359,7 +359,7 @@
                     var $form = $(this).find('form');
                     if($form.length && $form.data('blocked')) return false;
 
-                    $this.trigger('beforeClose');
+                    $this.triggerHandler('beforeClose');
 
                     // Показать предыдущие оверлеи
                     modals.not($this).last().each(function() {
@@ -372,7 +372,7 @@
 
                         // Событие после закрытия
                         D.afterClose(D, $this);
-                        $this.trigger('afterClose');
+                        $this.triggerHandler('afterClose');
 
                         // Если не клонировали - вернём на место
                         if (!D.clone)
