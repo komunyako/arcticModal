@@ -70,21 +70,8 @@
     var modalID = 0;
     var modals = $([]);
 
-
     var utils = {
-
-
-        // Определяет произошло ли событие e вне блока block
-        isEventOut: function(blocks, e) {
-            var r = true;
-            $(blocks).each(function() {
-                if ($(e.target).get(0)==$(this).get(0)) r = false;
-                if ($(e.target).closest('HTML', $(this).get(0)).length==0) r = false;
-            });
-            return r;
-        }
-
-
+        isMouseInside: false,
     };
 
 
@@ -157,11 +144,18 @@
             modal.prepare_body(D, $this);
 
             // Закрытие при клике на overlay
-            if (D.closeOnOverlayClick)
-                D.overlay.block.add(D.container.block).click(function(e) {
-                    if (utils.isEventOut($('>*', D.body), e))
+            if (D.closeOnOverlayClick) {
+                D.overlay.block.add(D.container.block).unbind('.arcticmodal-close').bind('mouseup.arcticmodal-close', function(e) {
+                    if (!utils.isMouseInside) {
                         $this.arcticmodal('close');
+                    }
+                    utils.isMouseInside = false;
                 });
+            }
+
+            D.body.unbind('.arcticmodal-close').bind('mousedown.arcticmodal-close', function(e) {
+                utils.isMouseInside = true;
+            });
 
             // Запомним настройки
             D.container.block.data('arcticmodalParentEl', $this);
@@ -351,6 +345,7 @@
                         return;
                     }
                     var D = $this.data('arcticmodal');
+                    utils.isMouseInside = false;
 
                     // Событие перед закрытием
                     if (D.beforeClose(D, $this)===false) return;
