@@ -307,6 +307,7 @@
             // Событие
             D.beforeOpen(D, $this);
             $this.triggerHandler('beforeOpen');
+            $this.trigger('arcticmodal:beforeOpen', D);
 
             // Wrap
             if (D.wrap.css('overflow-y')!='hidden') {
@@ -333,6 +334,7 @@
             modal.transition(D.container.block, 'show', modals.length>1 ? {type: 'none'} : D.openEffect, function() {
                 D.afterOpen(D, $this);
                 $this.triggerHandler('afterOpen');
+                $this.trigger('arcticmodal:afterOpen', D);
             });
 
             return $this;
@@ -363,6 +365,7 @@
                     if($form.length && $form.data('blocked')) return false;
 
                     $this.triggerHandler('beforeClose');
+                    $this.trigger('arcticmodal:beforeClose', D);
 
                     // Показать предыдущие оверлеи
                     modals.not($this).last().each(function() {
@@ -376,6 +379,7 @@
                         // Событие после закрытия
                         D.afterClose(D, $this);
                         $this.triggerHandler('afterClose');
+                        $this.trigger('arcticmodal:afterClose', D);
 
                         // Если не клонировали - вернём на место
                         if (!D.clone)
