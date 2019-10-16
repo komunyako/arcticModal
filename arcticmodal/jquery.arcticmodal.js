@@ -152,19 +152,6 @@
             // Подготовка содержимого
             modal.prepare_body(D, $this);
 
-            // Закрытие при клике на overlay
-            if (D.closeOnOverlayClick) {
-                D.overlay.block.add(D.container.block).unbind('.arcticmodal-close').bind('mouseup.arcticmodal-close', function(e) {
-                    if (!utils.isMouseInside && utils.isEventOut($('>*', D.body), e)) {
-                        $this.arcticmodal('close');
-                    }
-                    utils.isMouseInside = false;
-                });
-                D.body.unbind('.arcticmodal-close').bind('mousedown.arcticmodal-close', function(e) {
-                    utils.isMouseInside = true;
-                });
-            }
-
             // Запомним настройки
             D.container.block.data('arcticmodalParentEl', $this);
             $this.data('arcticmodal', D);
@@ -308,6 +295,19 @@
             D.beforeOpen(D, $this);
             $this.triggerHandler('beforeOpen');
             $this.trigger('arcticmodal:beforeOpen', D);
+
+            // Закрытие при клике на overlay
+            if (D.closeOnOverlayClick) {
+                D.overlay.block.add(D.container.block).unbind('.arcticmodal-close').bind('mouseup.arcticmodal-close', function(e) {
+                    if (!utils.isMouseInside && utils.isEventOut($('>*', D.body), e)) {
+                        $this.arcticmodal('close');
+                    }
+                    utils.isMouseInside = false;
+                });
+                D.body.unbind('.arcticmodal-close').bind('mousedown.arcticmodal-close', function(e) {
+                    utils.isMouseInside = true;
+                });
+            }
 
             // Wrap
             if (D.wrap.css('overflow-y')!='hidden') {
