@@ -1,0 +1,19 @@
+{
+  "name": "arctic-modal",
+  "version": "0.4.3",
+  "description": "",
+  "main": "./arcticmodal/jquery.arcticmodal.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/komunyako/arcticModal.git"
+  },
+  "author": "Maxi <komunyako@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/komunyako/arcticModal/issues"
+  },
+  "homepage": "https://github.com/komunyako/arcticModal#readme"
+}
